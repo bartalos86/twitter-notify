@@ -8,12 +8,50 @@
 
 </head>
 <body>
-
-   
-
     <div class="container">
+
+        <div class="crypto-container">
+            <div class="crypto-card">
+                <h2 class="title">Shiba</h2>
+                <img class="icon" src="" alt="" srcset="">
+                <p class="price"></p>
+            </div>
+
+            <div class="crypto-card">
+                <div class="header">
+                    <img class="icon" src="<%= icon %> " alt="" height="75px">
+                    <h2 class="title"><%= name %> </h2>
+                    <p class="price"><%= price %> </p>
+                </div>
+                
+                <div class="change-container">
+                    <p>1h: <span class="change <%= priceData.color1h %>"><%= priceData.change1h %>%</span></p>
+                    <p>1d: <span class="change <%= priceData.color1d %>"><%= priceData.change1d %>%</span></p>
+                    <p>7d: <span class="change <%= priceData.color7d %>"><%= priceData.change7d %>%</span></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tweet-conatiner">
+            <div class="tweet">
+                <h2 class="title">Title</h2>
+                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium asperiores consectetur perspiciatis itaque molestias!</p>
+            </div>
+
+            <div class="tweet">
+                <h2 class="title">Title</h2>
+                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium asperiores consectetur perspiciatis itaque molestias!</p>
+            </div>
+
+            <div class="tweet">
+                <h2 class="title">Title</h2>
+                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium asperiores consectetur perspiciatis itaque molestias!</p>
+            </div>
+        </div>
        
     </div>
+
+    <script src="/js/notify.js"></script>
    
 </body>
 </html>

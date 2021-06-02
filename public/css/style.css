@@ -1,0 +1,73 @@
+body{
+    margin: 0;
+    padding: 0;
+    color: white;
+    background: rgb(29, 29, 29);
+}
+
+.green{
+    color: rgb(43, 214, 66);
+}
+
+.red{
+    color: rgb(214, 43, 43);
+}
+
+.crypto-container{
+    background-color: rgb(54, 51, 51);
+    display: flex;
+}
+
+.crypto-card{
+    background-color: rgba(44, 44, 44, 0.774);
+    margin: 25px;
+    padding: 15px 30px;
+    border-radius: 15px;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.274) 2px 2px 6px;
+}
+
+.crypto-card .header{
+    display: flex;
+    position: relative;
+}
+
+.crypto-card .icon{
+    margin: 10px;
+}
+
+.crypto-card .price{
+    position: absolute;
+    bottom: 0px;
+    left: 94px;
+}
+
+.crypto-card .change-container{
+    display: flex;
+}
+
+.change-container p{
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+.change-container .change{
+    margin-left: 5px;
+}
+
+.tweet-conatiner{
+    max-width: 1500px;
+    width: 80%;
+    margin: auto;
+    background-color: rgb(53, 53, 53);
+    padding: 50px;
+}
+
+.tweet{
+    background-color: teal;
+    padding: 15px 30px;
+    border-radius: 15px;
+    margin-top: 25px;
+}
