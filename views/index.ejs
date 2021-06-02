@@ -1,57 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,800&display=swap"
+        rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;700&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
     <div class="container">
 
         <div class="crypto-container">
-            <div class="crypto-card">
-                <h2 class="title">Shiba</h2>
-                <img class="icon" src="" alt="" srcset="">
-                <p class="price"></p>
-            </div>
 
-            <div class="crypto-card">
-                <div class="header">
-                    <img class="icon" src="<%= icon %> " alt="" height="75px">
-                    <h2 class="title"><%= name %> </h2>
-                    <p class="price"><%= price %> </p>
+            <% priceData.forEach(coin => { %>
+
+                <div class="crypto-card">
+                    <div class="header">
+                        <img class="icon" src="<%= coin.icon %> " alt="" height="55px">
+                        <div class="card-sidebar">
+                            <h2 class="title">
+                                <%= coin.name %>
+                            </h2>
+                            <p class="price">
+                                <%= coin.price %> €
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
+                    <div class="change-container">
+                        <p>1h: <span class="change <%= coin.color1h %>">
+                                <%= coin.change1h %>%
+                            </span></p>
+                        <p>1d: <span class="change <%= coin.color1d %>">
+                                <%= coin.change1d %>%
+                            </span></p>
+                        <p>7d: <span class="change <%= coin.color7d %>">
+                                <%= coin.change7d %>%
+                            </span></p>
+                    </div>
                 </div>
-                
-                <div class="change-container">
-                    <p>1h: <span class="change <%= priceData.color1h %>"><%= priceData.change1h %>%</span></p>
-                    <p>1d: <span class="change <%= priceData.color1d %>"><%= priceData.change1d %>%</span></p>
-                    <p>7d: <span class="change <%= priceData.color7d %>"><%= priceData.change7d %>%</span></p>
-                </div>
-            </div>
+
+                <% }); %>
         </div>
+
+        <h1 class="large-title">Influencial Tweets</h1>
 
         <div class="tweet-conatiner">
             <div class="tweet">
                 <h2 class="title">Title</h2>
-                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium asperiores consectetur perspiciatis itaque molestias!</p>
+                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod
+                    provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium
+                    asperiores consectetur perspiciatis itaque molestias!</p>
             </div>
 
             <div class="tweet">
                 <h2 class="title">Title</h2>
-                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium asperiores consectetur perspiciatis itaque molestias!</p>
+                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod
+                    provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium
+                    asperiores consectetur perspiciatis itaque molestias!</p>
             </div>
 
             <div class="tweet">
                 <h2 class="title">Title</h2>
-                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium asperiores consectetur perspiciatis itaque molestias!</p>
+                <p class="content">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro, explicabo ab quod
+                    provident mollitia modi non reprehenderit excepturi quis odio esse impedit in accusantium laudantium
+                    asperiores consectetur perspiciatis itaque molestias!</p>
             </div>
         </div>
-       
+
     </div>
 
     <script src="/js/notify.js"></script>
-   
+
 </body>
+
 </html>
