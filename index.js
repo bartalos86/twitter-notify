@@ -13,15 +13,30 @@ var T = new Twit({
     timeout_ms:           60*1000,  // optional HTTP request timeout to apply to all requests.
     strictSSL:            true,     // optional - requires SSL certificates to be valid.
 })
+
+const accountFollows = ["binance", "elonmusk", "CoinMarketCap", "ShibaSwap", "dogecoin", "Shibtoken", "coinbase", "CoinbasePro"]
   
-//TODO: Make this work 
-T.get('search/tweets', { q: 'DOGE since:2021-06-01 ', result_type: "popular", count: 5 }, function(err, data, response) {
-    console.log(data)
-    for (let i = 0; i < data.statuses.length; i++){
-        let dt = data.statuses[i];
-        console.log("--- " + dt.text + "\n");
+function generateFollowsQuery(followAccounts) {
+    let query = "(";
+    for (let i = 0; i < followAccounts.length; i++){
+        let account = followAccounts[i];
+
+        if (i != followAccounts.length - 1) {
+            query += "from:" + account + " OR ";
+        } else {
+            query += "from:" + account + ")"
+        }
+
     }
-})
+
+    console.log(query)
+
+    return query;
+}
+
+async function getNews() {
+
+}
 
 const app = express();
 
@@ -30,7 +45,7 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/:coins", (req, res) => {
+app.get("/coins/:coins", (req, res) => {
 
     let coins = !req.params.coins ? "SHIB,DOGE,ADA" : req.params.coins;
 
@@ -41,14 +56,12 @@ app.get("/:coins", (req, res) => {
 
             let datas = response.data;
             let priceData = [];
-            console.log(datas)
+    
 
             for (let i = 0; i < datas.length; i++) {
                 let data = datas[i];
                 priceData[i] = new Object();
-                console.log(data)
-
-
+            
                 priceData[i].name = data.name;
                 priceData[i].icon = data.logo_url;
                 priceData[i].price = data.price;
@@ -73,5 +86,43 @@ app.get("/:coins", (req, res) => {
 
     //res.render("index");
 });
+
+app.get("/news", (req, res) => {
+
+    let tweets = [];
+    T.get('search/tweets', { q: `${generateFollowsQuery(accountFollows)} since:2021-05-31 `, result_type: "mixed", count: 10 }, function(err, data, response) {
+        //console.log(data)
+        for (let i = 0; i < data.statuses.length; i++){
+            let dt = data.statuses[i];
+
+            let tweet = {user: dt.user.screen_name, text: dt.text, retweets: dt.retweet_count, favourites: dt.favourite_count};
+
+            if(i == 1)
+            console.log(dt.entities)
+            
+        
+            if (dt.entities.media) {
+                tweet.imageContent = dt.entities.media[0].media_url;
+               // console.log(dt.entities.media)
+            }
+
+
+            tweet.hashtags = dt.entities.hashtags;
+
+            tweets.push(tweet);
+
+        
+            
+
+           // console.log(dt.entities.hashtags)
+           // console.log(`@${dt.user.screen_name}  ${dt.text} -- Retweets: ${dt.retweet_count}`);
+        }
+
+       // console.log(tweets);
+        res.setHeader("Access-Control-Allow-Origin","*")
+        res.send(tweets);
+    })
+
+ })
 
 app.listen(3000, () => { console.log("server started") });
